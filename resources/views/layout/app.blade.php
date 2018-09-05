@@ -11,7 +11,7 @@
     <title>Shop Homepage - Mpa webshop</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
@@ -50,8 +50,8 @@
       </footer>
   
       <!-- Bootstrap core JavaScript -->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script href="{{asset("vender/jquery/jquery.min.js")}}"></script>
+      <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
   
     </body>
   
