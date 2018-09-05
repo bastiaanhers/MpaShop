@@ -16,15 +16,15 @@ class UserSeeder extends Seeder
                 [   'name' => 'admin',
                     'email' => 'admin@email.com',
                     'password' => '$2y$10$ZfiL8DPwMHBWfjFKGUvi9OQA0p5pod2fNiX66TxSPzLal5IomfzCe',
-                    'remember_token' => 'nHrCEJGSeRot0JLkL4tHuPWGfqURkegU64dkfqYfsd4D8RyauPd3SaRjvr3c',
-                    'type' => 'admin' 
+                    'remember_token' => 'nHrCEJGSeRot0JLkL4tHuPWGfqURkegU64dkfqYfsd4D8RyauPd3SaRjvr3c'
+                     
                 ],
                 [
                     'name' => 'test user',
                     'email' => 'test@email.com',
                     'password' => '$2y$10$ClNse.cpWw12LboHjsex9OLexmuJXFDyGAHvFPpxgbAJ0QSRopoge',
-                    'remember_token' => 'hcUYyU7zoXwGRr5ZcIiS2YdUGf95oUneXUZ3SCZEr19yJdpFZH8YKVrsCxkF',
-                    'type' => 'default'
+                    'remember_token' => 'hcUYyU7zoXwGRr5ZcIiS2YdUGf95oUneXUZ3SCZEr19yJdpFZH8YKVrsCxkF'
+                    
                 ],
             ]
          );
