@@ -10,11 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index')
-    ->name('home');
+Route::get('/', [
+    'uses'=> 'HomeController@index',
+    'as'=> 'home.index']
+);
 
 Route::get('/catagory/{id}', 'CatagoryController@index')
     ->name('catagory');
 
 Route::get('/product/{id}', 'ProductController@index')
     ->name('Product');
+
+Route::get('/register', [
+    'as' => 'user.getRegister',
+    'uses' =>'userController@getRegister'
+    ]);
+Route::post('/register', [
+    'uses' => 'userController@postRegister',
+    'as' => 'user.postRegister'
+    ]);
