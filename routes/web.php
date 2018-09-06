@@ -21,12 +21,18 @@ Route::get('/catagory/{id}', 'CatagoryController@index')
 Route::get('/product/{id}', 'ProductController@index')
     ->name('Product');
 
-Route::get('add-to-cart/{$id}', [
-    'uses' => 'ProductController@addToCart',
-    'as' => 'product.addToCart'
-]);
 
-    
+
+    Route::get('add-to-cart/{$id}', [
+        'uses' => 'ProductController@addToCart',
+        'as' => 'product.addToCart'
+    ]);
+
+    Route::get('cart/view',[
+        'uses' => 'CartController@view',
+        'as' => 'cart.view'
+    ]);
+
 Route::group(['prefix'=>'user'],function(){
 
     Route::group(['middleware'=>'auth'], function(){

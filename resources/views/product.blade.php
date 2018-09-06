@@ -19,7 +19,7 @@
                       <h5>$24.99</h5>
                     <p class="">{{$product->first()->description}}</p>
                     </div>
-                    <button class="button">Add to cart</button>
+                    <button class="button" href="{{route('product.addToCart',$product->first()->id)}}">Add to cart</button>
                   </div>
                 </div>
               </div>

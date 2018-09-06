@@ -32,9 +32,7 @@
                         <h5>$24.99</h5>
                       <p class="card-text">{{$product->description}}</p>
                       </div>
-                      <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                      </div>
+                    <a href="{{route('product.addToCart', ['id'=> $product->id])}}" class="btn btn-success pull-right">Add to cart </a>
                     </div>
                   </div>
                   @endforeach

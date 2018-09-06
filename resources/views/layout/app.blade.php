@@ -18,7 +18,6 @@
 
   </head>
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -29,7 +28,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Cart
+            <a class="nav-link" href="{{route('cart.view')}}">Cart
+            <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalAmount : ''}}</span>
                 <span class="sr-only">(current)</span>
               </a>
             </li>

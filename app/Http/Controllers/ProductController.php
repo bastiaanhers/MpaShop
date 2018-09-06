@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +22,15 @@ class ProductController extends Controller
         $product = Product::getProductById($id);
         return view('product', [ 'product'=>$product]);
     }
+
     public function addToCart(Request $request, $id) {
         $product = Product::getProductById($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        dd($request->session()->get('cart'));
+        return redirect()->route('home.index');
     }
 }

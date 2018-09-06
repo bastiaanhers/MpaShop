@@ -1,4 +1,4 @@
-@extends('layout.app')
+{{-- @extends('layout.app')
 
 @section('content')
     <!-- Page Content -->
@@ -50,4 +50,4 @@
       
           </div>
           <!-- /.container -->
-      
+       --}}
