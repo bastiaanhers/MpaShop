@@ -43,6 +43,12 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            <li role="separator" class="divider"></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.logout')}}">logout
+                    <span class="sr-only">(current)</span>
+                  </a>
+            </li>
 
           </ul>
         </div>

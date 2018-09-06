@@ -21,30 +21,46 @@ Route::get('/catagory/{id}', 'CatagoryController@index')
 Route::get('/product/{id}', 'ProductController@index')
     ->name('Product');
 
-
-//register page routes
-Route::get('/register', [
-    'as' => 'user.getRegister',
-    'uses' =>'userController@getRegister'
+Route::get('add-to-cart/{$id}', [
+    'uses' => 'ProductController@addToCart',
+    'as' => 'product.addToCart'
 ]);
 
-Route::post('/register', [
-    'uses' => 'userController@postRegister',
-    'as' => 'user.postRegister'
-]);
+    
+Route::group(['prefix'=>'user'],function(){
 
-//login page routes
-Route::get('/login', [
-    'as' => 'user.getLogin',
-    'uses' =>'userController@getLogin'
-]);
+    Route::group(['middleware'=>'auth'], function(){
+        Route::get('/page', [
+            'uses' => 'userController@page',
+            'as' => 'user.page'
+        ]);
 
-Route::post('/login', [
-    'uses' => 'userController@postLogin',
-    'as' => 'user.postLogin'
-]);
+        Route::get('/logout', [
+            'uses' => 'userController@logout',
+            'as' => 'user.logout'
+        ]);
+    });
 
-Route::get('/user/page', [
-    'uses' => 'userController@page',
-    'as' => 'user.page'
-]);
+    Route::group(['middleware' => 'guest'], function(){
+        Route::get('/register', [
+            'as' => 'user.getRegister',
+            'uses' =>'userController@getRegister'
+        ]);
+
+        Route::post('/register', [
+            'uses' => 'userController@postRegister',
+            'as' => 'user.postRegister'
+        ]);
+
+        //login page routes
+        Route::get('/login', [
+            'as' => 'user.getLogin',
+            'uses' =>'userController@getLogin'
+        ]);
+
+        Route::post('/login', [
+            'uses' => 'userController@postLogin',
+            'as' => 'user.postLogin'
+        ]);
+    });
+});

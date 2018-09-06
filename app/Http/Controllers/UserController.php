@@ -9,9 +9,15 @@ use Auth;
 
 class UserController extends Controller
 {
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home.index');
+    }
+
     public function getRegister() {
       return view('user.register'); 
     }
+
     public function PostRegister(Request $request){
         $this->Validate($request, [
             'name' => 'required|string|max:255',
@@ -26,12 +32,14 @@ class UserController extends Controller
             
         ]);
         $user->save();
+        Auth::login($user);
         return redirect()->route('home.index');
     }
 
     public function getLogin(){
         return view('user.login');
     }
+
     public function postLogin(Request $request){
         $this->Validate($request, [
             'email' => 'required',
@@ -49,4 +57,5 @@ class UserController extends Controller
     public function page(){
         return view('user.page');
     }
+
 }

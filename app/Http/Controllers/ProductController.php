@@ -20,4 +20,7 @@ class ProductController extends Controller
         $product = Product::getProductById($id);
         return view('product', [ 'product'=>$product]);
     }
+    public function addToCart(Request $request, $id) {
+        $product = Product::getProductById($id);
+    }
 }
