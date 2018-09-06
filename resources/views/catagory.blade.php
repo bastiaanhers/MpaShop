@@ -11,7 +11,11 @@
                 <h1 class="my-4">Shop Name</h1>
                 <div class="list-group">
                   @foreach ($catagories as $catagory)
+                  @if($catagory->id ==$cat)
+                  <a href="/catagory/{{$catagory->id}}" class="list-group-item" style="color:green;">{{$catagory->name}}</a>    
+                  @else
                   <a href="/catagory/{{$catagory->id}}" class="list-group-item">{{$catagory->name}}</a>
+                  @endif
                   @endforeach
                 </div>
       

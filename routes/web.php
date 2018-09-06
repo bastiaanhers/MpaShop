@@ -12,3 +12,9 @@
 */
 Route::get('/', 'HomeController@index')
     ->name('home');
+
+Route::get('/catagory/{id}', 'CatagoryController@index')
+    ->name('catagory');
+
+Route::get('/product/{id}', 'ProductController@index')
+    ->name('Product');

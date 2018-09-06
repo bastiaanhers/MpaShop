@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Products;
+use App\Product;
 use App\Catagory;
 
 class HomeController extends Controller
@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->get();
-        $catagories = DB::table('catagories')->get();
+        $products = Product::getAllProducts();
+        $catagories =Catagory::getAllCatagories();
         return view('home', [ 'products'=>$products, 'catagories'=>$catagories]);
     }
 }
