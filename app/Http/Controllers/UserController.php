@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+use Auth;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
         $this->Validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|',
+            'password' => 'required|string|min:3|',
         ]);
 
         $user = new User([
@@ -26,5 +27,26 @@ class UserController extends Controller
         ]);
         $user->save();
         return redirect()->route('home.index');
+    }
+
+    public function getLogin(){
+        return view('user.login');
+    }
+    public function postLogin(Request $request){
+        $this->Validate($request, [
+            'email' => 'required',
+            'password' => 'required|min:3',
+        ]);
+
+        if (Auth::attempt([
+            'email' => $request->input('email'),
+            'password' => $request->input('password')])){
+                return redirect()->route('user.page');
+            }
+            return redirect()->back();
+    }
+
+    public function page(){
+        return view('user.page');
     }
 }

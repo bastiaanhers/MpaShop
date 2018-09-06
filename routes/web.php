@@ -21,11 +21,30 @@ Route::get('/catagory/{id}', 'CatagoryController@index')
 Route::get('/product/{id}', 'ProductController@index')
     ->name('Product');
 
+
+//register page routes
 Route::get('/register', [
     'as' => 'user.getRegister',
     'uses' =>'userController@getRegister'
-    ]);
+]);
+
 Route::post('/register', [
     'uses' => 'userController@postRegister',
     'as' => 'user.postRegister'
-    ]);
+]);
+
+//login page routes
+Route::get('/login', [
+    'as' => 'user.getLogin',
+    'uses' =>'userController@getLogin'
+]);
+
+Route::post('/login', [
+    'uses' => 'userController@postLogin',
+    'as' => 'user.postLogin'
+]);
+
+Route::get('/user/page', [
+    'uses' => 'userController@page',
+    'as' => 'user.page'
+]);

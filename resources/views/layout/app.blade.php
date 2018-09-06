@@ -33,6 +33,16 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            <li class="nav-item ">
+            <a class="nav-link" href="{{route('user.getLogin')}}">Login
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>            
+            <li class="nav-item">
+            <a class="nav-link" href="{{route('user.getRegister')}}">Register
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
 
           </ul>
         </div>
