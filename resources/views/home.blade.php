@@ -32,7 +32,7 @@
                         <h5>$24.99</h5>
                       <p class="card-text">{{$product->description}}</p>
                       </div>
-                    <a href="{{route('product.addToCart', ['id'=> $product->id])}}" class="btn btn-success pull-right">Add to cart </a>
+                    <a href="/add-to-cart/{{$product->id}}" class="btn btn-success pull-right">Add to cart </a>
                     </div>
                   </div>
                   @endforeach

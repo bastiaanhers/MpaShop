@@ -9,7 +9,7 @@ class Cart
     public $price = 0;
 
     public function __construct($oldCart){
-        if ($oldcart){
+        if ($oldCart){
             $this->items = $oldCart->items;
             $this->totalAmount = $oldCart->totalAmount;
             $this->price = $oldCart->price;
