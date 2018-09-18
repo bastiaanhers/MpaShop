@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function view() {
-        return view('cart.view');
+    public function view(Request $request) {
+        $cart = $request->session()->get('cart');
+
+        return view('cart', ['cart' => $cart]);
     }
 }

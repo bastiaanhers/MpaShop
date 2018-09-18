@@ -30,7 +30,6 @@ class ProductController extends Controller
         $cart->add($product->first(), $id);
 
         $request->session()->put('cart', $cart);
-        dd($request->session()->get('cart'));
         return redirect()->route('home.index');
     }
 }
