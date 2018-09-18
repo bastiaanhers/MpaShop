@@ -29,7 +29,7 @@
                         <h4 class="card-title">
                         <a href="/product/{{$product->id}}">{{$product->name}}</a>
                         </h4>
-                        <h5>$24.99</h5>
+                      <h5>{{$product->price}}</h5>
                       <p class="card-text">{{$product->description}}</p>
                       </div>
                     <a href="/add-to-cart/{{$product->id}}" class="btn btn-success pull-right">Add to cart </a>
