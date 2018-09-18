@@ -28,7 +28,7 @@ class Product extends Model
         
     }
     public static function getProductById($id){
-        $product = DB::table('products')->where('id', $id);
+        $product = DB::table('products')->where('id', $id)->first();
         return $product;
     }
     

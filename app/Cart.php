@@ -1,32 +1,45 @@
 <?php
 
 namespace App;
+use Session;
+
 
 class Cart
 {
-    public $items = null;
+    public $items= [];
     public $totalAmount = 0;
-    public $price = 0;
 
-    public function __construct($oldCart){
+
+    public function __construct(){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
         if ($oldCart){
             $this->items = $oldCart->items;
             $this->totalAmount = $oldCart->totalAmount;
-            $this->price = $oldCart->price;
         }
     }
 
-    public function add($item, $id) {
-        $storedItem = ['amount' => 0, 'price' => $item->price, 'item' => $item];
+    public function add($item) {
+        $idIsThere = false;
+        $storedItem = ['amount' => 1, 'itemId' => $item->id];
+
         if ($this->items) {
-           if(array_key_exists($id, $this->items)) {
-               $items = $this->items[$id];
-           }
+           for($i= 0; $i< count($this->items); $i++) {
+               if($this->items[$i]['itemId'] == $item->id){
+                   $storedItem = $this->items[$i];
+                   $storedItem['amount']++;
+                   $this->items[$i] = $storedItem;
+                   $this->totalAmount++;
+                   $idIsThere = true;
+               }
+            }
+            if(!$idIsThere){
+            $this->totalAmount++;    
+            array_push($this->items, $storedItem);
+            }
+        }else{ 
+            $this->totalAmount++;    
+            array_push($this->items, $storedItem);
         }
-        $storedItem['amount']++;
-        $storedItem['price'] = $this->price * $storedItem['amount'];
-        $this->items[$id] = $storedItem;
-        $this->totalAmount++;
-        $this->price += $item->price;
+
     }
 }

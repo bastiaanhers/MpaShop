@@ -25,9 +25,8 @@ class ProductController extends Controller
 
     public function addToCart(Request $request, $id) {
         $product = Product::getProductById($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product->first(), $id);
+        $cart = new Cart();
+        $cart->add($product);
 
         $request->session()->put('cart', $cart);
         return redirect()->route('home.index');
