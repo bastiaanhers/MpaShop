@@ -40,6 +40,23 @@ class Cart
             $this->totalAmount++;    
             array_push($this->items, $storedItem);
         }
-
     }
+
+    
+    public static function DeleteItem($id){
+        $cartForDel = Session::get('cart');
+
+        if (count($cartForDel->items) > 1) {
+           for($i= 0; $i< count($cartForDel->items); $i++) {
+               if($cartForDel->items[$i]['itemId'] == $id){
+                   array_splice($cartForDel->items, $i, $i);
+               }
+            }
+        }else{
+            unset($cartForDel->items[0]);
+        }
+        $cartForDel->totalAmount --;
+        session()->put('cart', $cartForDel);
+    }
+    
 }

@@ -22,7 +22,7 @@ Route::get('/product/{id}', 'ProductController@index')
     ->name('Product');
 
 
-    Route::get('add-to-cart/{id}', 'ProductController@addToCart');
+Route::get('add-to-cart/{id}', 'ProductController@addToCart');
 
     // Route::get('add-to-cart/{$id}', [
     //     'uses' => 'ProductController@addToCart',
@@ -32,6 +32,10 @@ Route::get('/product/{id}', 'ProductController@index')
     Route::get('cart/view',[
         'uses' => 'CartController@view',
         'as' => 'cart.view'
+    ]);
+    Route::get('cart/delete/{id}',[
+        'uses' => 'cartController@DeleteItem',
+        'as' => 'cart.del' 
     ]);
 
 Route::group(['prefix'=>'user'],function(){

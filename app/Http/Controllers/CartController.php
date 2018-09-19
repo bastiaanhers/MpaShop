@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Cart;
 
 class CartController extends Controller
 {
@@ -17,4 +18,9 @@ class CartController extends Controller
         }
         return view('cart', ['cart' => $cart, 'products' => $productsInCart]);
     }
+    public function DeleteItem($id){
+        Cart::deleteItem($id);
+        return redirect()->route('cart.view');
+    }
+
 }
