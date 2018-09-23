@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+
 <?php $totalPrice = 0?>
     <!-- Page Content -->
     <div class="container">
@@ -33,7 +34,7 @@
                         <p>{{$product->price}}</p>
                     </div>
                     <div class="col-lg-3">
-                        <p>{{$item['amount']}}</p>
+                    <input onchange="window.location.href= '/cart/editItem/'+{{$item['itemId']}}+'/'+this.value" type="number" name="amount" min="0" value="{{$item['amount']}}">                     
                     </div>
                     <div class="col-lg-2">
                         <p><?php $total1 = $item['amount'] * $product->price; echo($total1); $totalPrice = $totalPrice+$total1; ?></p>

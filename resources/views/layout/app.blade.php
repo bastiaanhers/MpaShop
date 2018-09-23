@@ -29,7 +29,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
             <a class="nav-link" href="{{route('cart.view')}}">Cart
-            <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalAmount : ''}}</span>
+              <?php $totalAmount; ?>
+            <span class="badge">{{$totalAmount}}</span>
                 <span class="sr-only">(current)</span>
               </a>
             </li>

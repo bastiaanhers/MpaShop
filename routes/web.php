@@ -37,6 +37,10 @@ Route::get('add-to-cart/{id}', 'ProductController@addToCart');
         'uses' => 'cartController@DeleteItem',
         'as' => 'cart.del' 
     ]);
+    Route::get('cart/editItem/{id}/{amount}',[
+        'uses' => 'cartController@EditAmount',
+        'as' => 'cart.editAmount'
+    ]);
 
 Route::group(['prefix'=>'user'],function(){
 
