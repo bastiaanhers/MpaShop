@@ -22,9 +22,9 @@ class CartController extends Controller
         Cart::deleteItem($id);
         return redirect()->route('cart.view');
     }
+
     public function editAmount($id, $newAmount){
-        $item = Product::getProductById($id);
-        Cart::editAmount($item, $newAmount);
+        Cart::editAmount($id, $newAmount);
         return redirect()->route('cart.view');
     }
 

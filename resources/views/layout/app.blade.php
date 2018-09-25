@@ -29,7 +29,9 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
             <a class="nav-link" href="{{route('cart.view')}}">Cart
-              <?php $totalAmount; ?>
+              <?php use App\Cart; $totalAmount=0; $cart = new Cart; $cartItems = $cart->items; foreach ($cartItems as $item) {
+                $totalAmount = $totalAmount + $item['amount'];
+              } ?>
             <span class="badge">{{$totalAmount}}</span>
                 <span class="sr-only">(current)</span>
               </a>

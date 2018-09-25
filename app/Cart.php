@@ -7,17 +7,19 @@ use Session;
 class Cart
 {
     public $items= [];
-
+    public $totalAmount = 0;
 
 
     public function __construct(){
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         if ($oldCart){
             $this->items = $oldCart->items;
+            $this->totalAmount = $oldCart->totalAmount;
         }
     }
 
     public function add($item) {
+        $idIsThere = false;
         $storedItem = ['amount' => 1, 'itemId' => $item->id];
 
         if ($this->items) {
@@ -26,33 +28,17 @@ class Cart
                    $storedItem = $this->items[$i];
                    $storedItem['amount']++;
                    $this->items[$i] = $storedItem;
+                   $this->totalAmount++;
                    $idIsThere = true;
                }
             }
+            if(!$idIsThere){
+            $this->totalAmount++;    
             array_push($this->items, $storedItem);
-        }
-    }
-
-    public static function editAmount($item, $newAmount) {
-        $cart = Session::get('cart');
-
-        $storedItem = ['amount' => 1, 'itemId' => $item->id];
-        if($newAmount == 0){
-            Cart::DeleteItem($item->id);
-
-        }else{
-            for($i= 0; $i< count($cart->items); $i++) {
-                if($cart->items[$i]['itemId'] == $item->id){
-                    //get existing row from cart and change stored amount
-                    $storedItem = $cart->items[$i];
-                    //change existing row with new amoun
-                    $storedItem['amount'] = $newAmount;
-                    $cart->items[$i] = $storedItem; 
-                    //store row in array and store cart in session
-                    array_push($cart->items, $storedItem);
-                    session()->put('cart', $cart);
-                }
             }
+        }else{ 
+            $this->totalAmount++;    
+            array_push($this->items, $storedItem);
         }
     }
 
@@ -69,8 +55,30 @@ class Cart
         }else{
             unset($cartForDel->items[0]);
         }
-
+        $cartForDel->totalAmount --;
         session()->put('cart', $cartForDel);
     }
-    
+    public static function editAmount($id, $newAmount) {
+        $cart = Session::get('cart');
+         $storedItem = ['amount' => 1, 'itemId' => $id];
+        if($newAmount == 0){
+            Cart::DeleteItem($id);
+         }else{
+            for($i= 0; $i< count($cart->items); $i++) {
+                if($cart->items[$i]['itemId'] == $id){
+                    //get existing row from cart and change stored amount
+                    $storedItem = $cart->items[$i];
+                    //change existing row with new amoun
+                    $storedItem['amount'] = $newAmount;
+                    $cart->items[$i] = $storedItem; 
+                    //store row in array and store cart in session
+                    unset($cart->items[$i]); 
+                    array_push($cart->items, $storedItem);
+                    session()->put('cart', $cart);
+                }else{
+                    echo "error";
+                }
+            }
+        }
+    }
 }
