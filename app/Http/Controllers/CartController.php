@@ -18,13 +18,13 @@ class CartController extends Controller
         }
         return view('cart', ['cart' => $cart, 'products' => $productsInCart]);
     }
-    public function DeleteItem($id){
-        Cart::deleteItem($id);
+    public function DeleteItem($delId){
+        Cart::deleteItem($delId);
         return redirect()->route('cart.view');
     }
 
-    public function editAmount($id, $newAmount){
-        Cart::editAmount($id, $newAmount);
+    public function editAmount($editId, $newAmount){
+        Cart::editAmount($editId, $newAmount);
         return redirect()->route('cart.view');
     }
 

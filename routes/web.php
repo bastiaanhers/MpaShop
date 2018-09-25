@@ -33,11 +33,11 @@ Route::get('add-to-cart/{id}', 'ProductController@addToCart');
         'uses' => 'CartController@view',
         'as' => 'cart.view'
     ]);
-    Route::get('cart/delete/{id}',[
+    Route::get('cart/delete/{delId}',[
         'uses' => 'cartController@DeleteItem',
         'as' => 'cart.del' 
     ]);
-    Route::get('cart/editItem/{id}/{amount}',[
+    Route::get('cart/editItem/{editId}/{amount}',[
         'uses' => 'cartController@EditAmount',
         'as' => 'cart.editAmount'
     ]);

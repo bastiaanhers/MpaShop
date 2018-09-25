@@ -43,12 +43,12 @@ class Cart
     }
 
     
-    public static function DeleteItem($id){
+    public static function DeleteItem($delId){
         $cartForDel = Session::get('cart');
 
         if (count($cartForDel->items) > 1) {
            for($i= 0; $i< count($cartForDel->items); $i++) {
-               if($cartForDel->items[$i]['itemId'] == $id){
+               if($cartForDel->items[$i]['itemId'] == $delId){
                    array_splice($cartForDel->items, $i, $i);
                }
             }
@@ -58,22 +58,19 @@ class Cart
         $cartForDel->totalAmount --;
         session()->put('cart', $cartForDel);
     }
-    public static function editAmount($id, $newAmount) {
+    public static function editAmount($editId, $newAmount) {
         $cart = Session::get('cart');
-         $storedItem = ['amount' => 1, 'itemId' => $id];
         if($newAmount == 0){
-            Cart::DeleteItem($id);
+            Cart::DeleteItem($editId);
          }else{
             for($i= 0; $i< count($cart->items); $i++) {
-                if($cart->items[$i]['itemId'] == $id){
+                if($cart->items[$i]['itemId'] == $editId){
                     //get existing row from cart and change stored amount
                     $storedItem = $cart->items[$i];
                     //change existing row with new amoun
                     $storedItem['amount'] = $newAmount;
                     $cart->items[$i] = $storedItem; 
                     //store row in array and store cart in session
-                    unset($cart->items[$i]); 
-                    array_push($cart->items, $storedItem);
                     session()->put('cart', $cart);
                 }else{
                     echo "error";
