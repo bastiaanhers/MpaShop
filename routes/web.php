@@ -41,7 +41,12 @@ Route::get('add-to-cart/{id}', 'ProductController@addToCart');
         'uses' => 'cartController@EditAmount',
         'as' => 'cart.editAmount'
     ]);
-
+Route::group(['prefix' => 'order'],function(){
+    Route::get('/makeOrder',[
+        'uses' => 'orderController@createOrder',
+        'as' => 'order.create'
+    ]);
+});
 Route::group(['prefix'=>'user'],function(){
 
     Route::group(['middleware'=>'auth'], function(){

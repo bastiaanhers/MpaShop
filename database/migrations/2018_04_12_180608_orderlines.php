@@ -14,8 +14,10 @@ class Orderlines extends Migration
     public function up()
     {
         Schema::create('orderlines', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('order_id');
-            $table->integer('product_id');
+            $table->integer('item_id');
+            $table->integer('price');  
             $table->integer('amount');  
         });
     }

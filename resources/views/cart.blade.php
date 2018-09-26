@@ -52,6 +52,13 @@
             </div>
 
         </div>
+        @if(Auth::check())
+        <div class="row">
+            <div class="col-lg-4">
+                <a class="nav-link" href="{{route('order.create')}}">order create               
+            </div>
+        </div>
+        @endif
         @else
         <h1> Cart Empty Ma Dude</h1>
         @endif

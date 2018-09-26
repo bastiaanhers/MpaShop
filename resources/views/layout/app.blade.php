@@ -35,6 +35,21 @@
             <span class="badge">{{$totalAmount}}</span>
                 <span class="sr-only">(current)</span>
               </a>
+
+            @if(Auth::check())
+            <li role="separator" class="divider"></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.logout')}}">logout
+                    <span class="sr-only">(current)</span>
+                  </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.page')}}">user page
+                    <span class="sr-only">(current)</span>
+                  </a>
+            </li>
+            @else()
             </li>
             <li class="nav-item ">
             <a class="nav-link" href="{{route('user.getLogin')}}">Login
@@ -46,13 +61,7 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li role="separator" class="divider"></li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('user.logout')}}">logout
-                    <span class="sr-only">(current)</span>
-                  </a>
-            </li>
-
+          @endif()
           </ul>
         </div>
       </div>
