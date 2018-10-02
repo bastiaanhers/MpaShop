@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use App\Product;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Session;
 
 
 class Order extends Model
 {
+    public static function getOrdersById($userId){
+
+        $allOrdersOfId = DB::table('orders')->where('user_id', $userId)->get();
+
+        return $allOrdersOfId;
+    }
+
     public function createOrder($cart){
         $totalPrice = 0;
 
@@ -35,6 +43,7 @@ class Order extends Model
         }
         //give order DB a totalprice
         $affected = DB::update('update orders set total_price = ? where id = ?', [$totalPrice,$orderId]);
+        Session::forget('cart');
 
     }
 }

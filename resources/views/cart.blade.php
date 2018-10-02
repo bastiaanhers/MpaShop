@@ -58,6 +58,16 @@
                 <a class="nav-link" href="{{route('order.create')}}">order create               
             </div>
         </div>
+        @else
+        <div class="row">
+            <div class="col-lg-2">
+                <p>You need to be signed in to Order</p>
+            </div>
+            <div class="col-lg-1">
+                <a class="nav-link" href="{{route('user.getLogin')}}">Login
+                 <a class="nav-link" href="{{route('user.getRegister')}}">Register
+            </div>
+        </div> 
         @endif
         @else
         <h1> Cart Empty Ma Dude</h1>

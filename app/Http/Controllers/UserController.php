@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Order;
 use App\Http\Requests;
 use Auth;
 
@@ -55,7 +56,9 @@ class UserController extends Controller
     }
 
     public function page(){
-        return view('user.page');
+        $orders = Order::getOrdersById(Auth::user()->getId());
+
+        return view('user.page', [ 'orders'=>$orders]);
     }
 
 }

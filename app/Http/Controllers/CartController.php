@@ -18,6 +18,7 @@ class CartController extends Controller
         }
         return view('cart', ['cart' => $cart, 'products' => $productsInCart]);
     }
+    
     public function DeleteItem($delId){
         Cart::deleteItem($delId);
         return redirect()->route('cart.view');

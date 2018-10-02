@@ -36,7 +36,6 @@ class Cart
             array_push($this->items, $storedItem);
         }
     }
-
     
     public static function DeleteItem($delId){
         $cartForDel = Session::get('cart');
@@ -52,6 +51,7 @@ class Cart
         }
         session()->put('cart', $cartForDel);
     }
+    
     public static function editAmount($editId, $newAmount) {
         $cart = Session::get('cart');
         if($newAmount == 0){
