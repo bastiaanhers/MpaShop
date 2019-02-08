@@ -2,6 +2,7 @@
 
 namespace App;
 use Session;
+use App\Product;
 
 
 class Cart
@@ -15,13 +16,27 @@ class Cart
             $this->items = $oldCart->items;
         }
     }
+    
+    public function getItemid(){
+        return $this->items;
+    }
+
+    public function getItems(){
+        $cartproducts = [];
+        foreach($this->items as $item){
+            array_push($cartproducts, Product::getProductById($item['itemId']));
+        }
+        return $cartproducts;
+    }
 
     public function add($item) {
         $idIsThere = false;
         $storedItem = ['amount' => 1, 'itemId' => $item->id];
 
         if ($this->items) {
+            
            for($i= 0; $i< count($this->items); $i++) {
+               
                if($this->items[$i]['itemId'] == $item->id){
                    $storedItem = $this->items[$i];
                    $storedItem['amount']++;
@@ -37,7 +52,7 @@ class Cart
         }
     }
     
-    public static function DeleteItem($delId){
+    public function DeleteItem($delId){
         $cartForDel = Session::get('cart');
 
         if (count($cartForDel->items) > 1) {
@@ -52,7 +67,7 @@ class Cart
         session()->put('cart', $cartForDel);
     }
     
-    public static function editAmount($editId, $newAmount) {
+    public function editAmount($editId, $newAmount) {
         $cart = Session::get('cart');
         if($newAmount == 0){
             Cart::DeleteItem($editId);

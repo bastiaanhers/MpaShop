@@ -25,10 +25,11 @@ class ProductController extends Controller
 
     public function addToCart(Request $request, $id) {
         $product = Product::getProductById($id);
+        
         $cart = new Cart();
         $cart->add($product);
 
         $request->session()->put('cart', $cart);
-        return redirect()->route('home.index');
+        return redirect()->back();
     }
 }

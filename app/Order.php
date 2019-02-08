@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Product;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
+use App\Product;
 
 
 class Order extends Model

@@ -22,7 +22,10 @@ Route::get('/product/{id}', 'ProductController@index')
     ->name('Product');
 
 
-Route::get('add-to-cart/{id}', 'ProductController@addToCart');
+Route::get('add-to-cart/{id}', [
+        'uses' => 'ProductController@addToCart',
+        'as' => 'product.addToCart']);
+    
 
     // Route::get('add-to-cart/{$id}', [
     //     'uses' => 'ProductController@addToCart',
